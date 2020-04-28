@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context=".Start">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAskQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="146dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            app:elevation="15dp"
+            app:srcCompat="@android:drawable/ic_menu_add"
+            app:useCompatPadding="true" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom = "false"
+        android:layout_gravity="bottom|center"
+        app:menu="@menu/bottom_navigation"
+        app:itemIconTint="@color/colorPrimaryDark"
+        android:background="@drawable/background_gradient_navbar"
+        />
+    </FrameLayout>
+</RelativeLayout>
