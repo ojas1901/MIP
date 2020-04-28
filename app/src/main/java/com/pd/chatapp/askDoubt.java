@@ -1,9 +1,11 @@
 package com.pd.chatapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,8 +17,22 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
     String[] Physics = {"Solid State Physics","Dielectrics, Magnetic and Superconducting Properties of Materials", "Quantum and Opto-electronics","Sensors and Transducers", "Optics", "Electrodynamics"};
     String[] Chemistry = {"Water and Green Chemistry","Energy", "Polymer Chemistry","Nano science and Nanotechnology" ,"Spectroscopy and Instrumental Methods of Analysis", "Synthetic Organic Reactions and Bio-inorganic Chemistry"};
     String[] noSubject = {"Please select subject first !"};
-    static String sub = "Physics";
+    static String sub;
     static String chap;
+
+    public static void setSubject(String s)
+    { sub = s; }
+
+    public static String getSubject()
+    { return sub; }
+
+    public static void setChapter(String s)
+    { chap = s; }
+
+    public static String getChapter()
+    { return chap; }
+
+    Button btnAsk;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         sub = "Physics";
@@ -24,67 +40,85 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask_doubt);
 
-        Spinner spinSubject = findViewById(R.id.spSubject);
-        ArrayAdapter<String> subject = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, Subjects);
-        subject.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinSubject.setAdapter(subject);
-        spinSubject.setOnItemSelectedListener(this);
+        final Spinner spinSubject = (Spinner)findViewById (R.id.spSubject);
+        final Spinner spinChapter = (Spinner) findViewById (R.id.spChapter);
 
-        sub = spinSubject.getSelectedItem().toString();
-        Toast.makeText(this, "Entered in the activity- "+chap, Toast.LENGTH_SHORT).show();
-        Spinner spinChapter = findViewById(R.id.spChapter);
-        if(sub.equals("Physics"))
-        {
-            ArrayAdapter<String> chapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Physics);
-            chapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinChapter.setAdapter(chapter);
-            spinChapter.setOnItemSelectedListener(this);
-        }
-        else if(sub.equals("Chemistry"))
-        {
-            ArrayAdapter<String> chapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Chemistry);
-            chapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinChapter.setAdapter(chapter);
-            spinChapter.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        }
-        else
-            sub = "Please select subject first !";
+        btnAsk = findViewById(R.id.btnAsk);
+        ArrayAdapter<String> subjectList =  new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,Subjects);
 
-        if(sub.equals("Please select subject first !")){
-            Toast.makeText(this, "Select Subject first !!!", Toast.LENGTH_SHORT).show();
-            ArrayAdapter<String> chapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, noSubject);
-            chapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinChapter.setAdapter(chapter);
-            spinChapter.setOnItemSelectedListener(this);
+        final ArrayAdapter<String> chapterListPhysics =  new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,Physics);
+        final ArrayAdapter<String> chapterListChemistry =  new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,Chemistry);
 
-        }
+        spinSubject.setAdapter(subjectList);
+        //spinChapter.setAdapter(chapterListPhysics);
+
+
+
+        spinSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+               if(position == 0)
+               {
+                   spinChapter.setAdapter(chapterListPhysics);
+                   setSubject("Physics");
+               }
+               else
+                   {
+                   spinChapter.setAdapter(chapterListChemistry);
+                   setSubject("Chemistry");
+               }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0)
+            {
+                //spinChapter.setAdapter(chapterListPhysics);
+                setSubject("No subject selected !");
+            }
+
+        });
+
+        spinChapter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
+                //spinSubject.setSelection(position);
+                if(getSubject().equals("Physics"))
+                {
+                    setChapter(Physics[position]);
+                }
+                else if(getSubject().equals("Chemistry"))
+                {
+                    setChapter(Chemistry[position]);
+                }
+                else
+                    setChapter("Can't select chapter");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                setChapter("No chapter selected");
+            }
+
+        });
+
+        btnAsk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(askDoubt.this, Users.class);
+                String Sub = getSubject();
+                intent.putExtra("subject", Sub);
+                startActivity(intent);
+            }
+        });
 
     }
 
-    public void onItemSelected(AdapterView<?> parent, View v, int position, long id ){
-        Spinner spin = (Spinner)parent;
-        Spinner spin2 = (Spinner)parent;
-        if(spin.getId() == R.id.spSubject)
-        {
-            Toast.makeText(this, "Your choose :" + Subjects[position], Toast.LENGTH_SHORT).show();
-            sub = Subjects[position];
-        }
-        if(spin2.getId() == R.id.spChapter)
-        {
-            if(sub == "Physics") {
-                Toast.makeText(this, "Your choose :" + Physics[position], Toast.LENGTH_SHORT).show();
-                chap = Physics[position];
-            }
-            else if(sub == "Chemistry") {
-                Toast.makeText(this, "Your choose :" + Chemistry[position], Toast.LENGTH_SHORT).show();
-                chap = Chemistry[position];
-            }
-            else if(sub == "Please select subject first !")
-            {
-                Toast.makeText(this, "Your choose :" + Chemistry[position], Toast.LENGTH_SHORT).show();
-                chap ="";
-            }
-        }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
 

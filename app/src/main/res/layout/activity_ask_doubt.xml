@@ -25,13 +25,13 @@
 
     <Spinner
         android:id="@+id/spSubject"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
         android:layout_marginTop="117dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="81dp"
-        app:layout_constraintBottom_toTopOf="@+id/spChapter"
+        android:layout_marginBottom="511dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAsk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,8 +52,8 @@
 
     <Spinner
         android:id="@+id/spChapter"
-        android:layout_width="0dp"
-        android:layout_height="34dp"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="469dp"
@@ -78,12 +78,14 @@
 
     <TextView
         android:id="@+id/tvAskDoubt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="78dp"
+        android:layout_width="46dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/arbutus_slab"
         android:text="Ask"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -91,12 +93,27 @@
         android:id="@+id/etDoubt"
         android:layout_width="332dp"
         android:layout_height="264dp"
-        android:gravity="fill_horizontal"
+        android:background="@drawable/backborder"
+        android:gravity="center_horizontal"
         android:hint="Describe your doubt here"
         android:maxLines="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/backborder"
-        app:layout_constraintTop_toBottomOf="@+id/tvAskDoubt" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAskDoubt"
+        app:layout_constraintVertical_bias="0.271"
+        tools:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/btnAsk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="Ask"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDoubt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
