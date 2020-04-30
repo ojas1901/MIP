@@ -17,6 +17,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.pd.chatapp.student.startStudent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +28,10 @@ public class Login extends AppCompatActivity {
     TextView registerUser;
     EditText username, password;
     Button loginButton;
-    String user, pass;
+    String user, pass, email;
+    boolean isFaculty;
+    private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,8 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
+        isFaculty = false;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         registerUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,23 +59,46 @@ public class Login extends AppCompatActivity {
                 user = username.getText().toString();
                 pass = password.getText().toString();
 
+
                 if(user.equals("")){
-                    username.setError("can't be blank");
+                    username.setError("Can't be blank");
                 }
                 else if(pass.equals("")){
-                    password.setError("can't be blank");
+                    password.setError("Can't be blank");
                 }
                 else{
+                    //Checking if user is teacher
+                    /*
+                    Query query = mDatabase.child("Faculty").orderByChild("email");
+                    query.addValueEventListener(new ValueEventListener()
+                    {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot)
+                        {
+                            //for (DataSnapshot chlid : dataSnapshot.getChildren()){ }
+                            if(dataSnapshot.getValue().toString().equals(user))
+                            {
+                                isFaculty = true;
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError)
+                        {
+
+                        }
+                    });*/
+
                     String url = "https://androidchatapp-aa4b9.firebaseio.com/users.json";
                     final ProgressDialog pd = new ProgressDialog(Login.this);
-                    pd.setMessage("Loading...");
+                    pd.setMessage("Loading ...");
                     pd.show();
 
                     StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                         @Override
                         public void onResponse(String s) {
                             if(s.equals("null")){
-                                Toast.makeText(Login.this, "user not found", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Login.this, "User not found !", Toast.LENGTH_LONG).show();
                             }
                             else{
                                 try {
@@ -80,7 +111,7 @@ public class Login extends AppCompatActivity {
                                         UserDetails.username = user;
                                         UserDetails.password = pass;
 
-                                        startActivity(new Intent(Login.this, Start.class));
+                                        startActivity(new Intent(Login.this, startStudent.class));
                                         Login.this.finish();
                                     }
                                     else {

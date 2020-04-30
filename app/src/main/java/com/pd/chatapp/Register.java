@@ -23,9 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Register extends AppCompatActivity {
-    EditText username, password;
+    EditText etusername, etpassword, etemail;
     Button registerButton;
-    String user, pass;
+    String user, pass ,email;
     TextView login;
 
     @Override
@@ -33,8 +33,9 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        etusername = findViewById(R.id.username);
+        etpassword = findViewById(R.id.password);
+        etemail = findViewById(R.id.email);
         registerButton = findViewById(R.id.registerButton);
         login = findViewById(R.id.login);
 
@@ -51,23 +52,23 @@ public class Register extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = username.getText().toString();
-                pass = password.getText().toString();
-
+                user = etusername.getText().toString();
+                pass = etpassword.getText().toString();
+                email = etemail.getText().toString();
                 if(user.equals("")){
-                    username.setError("can't be blank");
+                    etusername.setError("can't be blank");
                 }
                 else if(pass.equals("")){
-                    password.setError("can't be blank");
+                    etpassword.setError("can't be blank");
                 }
-                else if(!user.matches("[A-Za-z0-9]+")){
-                    username.setError("only alphabet or number allowed");
+                else if(!user.matches("[@.A-Za-z0-9]+")){
+                    etusername.setError("only alphabet or number allowed");
                 }
                 else if(user.length()<5){
-                    username.setError("at least 5 characters long");
+                    etusername.setError("at least 5 characters long");
                 }
                 else if(pass.length()<5){
-                    password.setError("at least 5 characters long");
+                    etpassword.setError("at least 5 characters long");
                 }
                 else {
                     final ProgressDialog pd = new ProgressDialog(Register.this);
@@ -83,7 +84,8 @@ public class Register extends AppCompatActivity {
 
                             if(s.equals("null")) {
                                 reference.child(user).child("password").setValue(pass);
-                                Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
+                                reference.child(user).child("email").setValue(email);
+                                Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
                             }
                             else {
                                 try {
@@ -91,6 +93,7 @@ public class Register extends AppCompatActivity {
 
                                     if (!obj.has(user)) {
                                         reference.child(user).child("password").setValue(pass);
+                                        reference.child(user).child("email").setValue(email);
                                         Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
                                     } else {
                                         Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();
@@ -107,7 +110,7 @@ public class Register extends AppCompatActivity {
                     },new Response.ErrorListener(){
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
-                            System.out.println("" + volleyError );
+                            System.out.println("Volley Error " + volleyError );
                             pd.dismiss();
                         }
                     });

@@ -1,4 +1,4 @@
-package com.pd.chatapp;
+package com.pd.chatapp.teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.pd.chatapp.ui.FAQFragment;
-import com.pd.chatapp.ui.historyFragment;
-import com.pd.chatapp.ui.homeFragment;
-import com.pd.chatapp.ui.moreFragment;
-public class Start extends AppCompatActivity {
+import com.pd.chatapp.R;
+import com.pd.chatapp.teacher.ui.FAQFragment;
+import com.pd.chatapp.teacher.ui.historyFragment;
+import com.pd.chatapp.teacher.ui.homeFragment;
+import com.pd.chatapp.teacher.ui.moreFragment;
+
+public class startTeacher extends AppCompatActivity {
 
     FloatingActionButton fabAskDoubt;
     @Override
@@ -34,7 +36,7 @@ public class Start extends AppCompatActivity {
         fabAskDoubt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Start.this, askDoubt.class));
+                startActivity(new Intent(startTeacher.this, askDoubt.class));
             }
         });
     }

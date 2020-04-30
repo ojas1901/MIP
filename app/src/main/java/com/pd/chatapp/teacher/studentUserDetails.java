@@ -1,7 +1,6 @@
-package com.pd.chatapp;
-public class UserDetails {
+package com.pd.chatapp.teacher;
+public class studentUserDetails {
     static String username = "";
     static String password = "";
-    static String email = "";
     static String chatWith = "";
 }

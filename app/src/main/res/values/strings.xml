@@ -2,11 +2,13 @@
     <string name="app_name">Doubt Solver</string>
     <string name="no_users_found">No users found!</string>
     <string name="login">Login</string>
-    <string name="enter_username">enter username</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Somaiya Email</string>
     <string name="click_here_to_register">Click here to register</string>
     <string name="write_a_message">Type a message</string>
     <string name="click_here_to_login">Click here to login</string>
-    <string name="enter_password">enter_password</string>
+
     <string name="register">Register</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

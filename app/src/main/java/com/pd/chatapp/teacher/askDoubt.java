@@ -1,4 +1,4 @@
-package com.pd.chatapp;
+package com.pd.chatapp.teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.pd.chatapp.R;
 
 public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     String[] Subjects = {"Physics","Chemistry"};
@@ -107,7 +109,7 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
         btnAsk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(askDoubt.this, Users.class);
+                Intent intent = new Intent(askDoubt.this, teacherList.class);
                 String Sub = getSubject();
                 intent.putExtra("subject", Sub);
                 startActivity(intent);
