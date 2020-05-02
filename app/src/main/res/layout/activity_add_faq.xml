@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context=".student.askDoubt">
+    tools:context=".teacher.addDoubt">
 
 
     <TextView
@@ -47,7 +47,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/spSubject"
         app:layout_constraintEnd_toStartOf="@+id/spSubject"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spSubject" />
+        app:layout_constraintTop_toTopOf="@+id/spSubject"
+        android:layout_marginRight="80dp" />
 
     <Spinner
         android:id="@+id/spChapter"
@@ -88,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/etDoubt"
+        android:id="@+id/etAddSolution"
         android:layout_width="346dp"
         android:layout_height="211dp"
         android:layout_marginTop="28dp"
@@ -106,6 +107,7 @@
         android:id="@+id/btnAsk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:background="@color/colorAccent"
         android:text="Add"
         android:textColor="#FFFFFF"
@@ -131,7 +133,7 @@
         app:layout_constraintVertical_bias="0.67" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etAddDoubt"
         android:layout_width="346dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"

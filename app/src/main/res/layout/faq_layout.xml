@@ -9,6 +9,8 @@
     android:layout_marginLeft="2dp"
     android:layout_marginRight="2dp"
     android:background="#ffffff"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     >
 
     <RelativeLayout
