@@ -10,7 +10,10 @@
     tools:context="com.pd.chatapp.Users"
     android:orientation="vertical"
     android:background="#FFD452">
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_history_container">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,4 +25,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/usersList"/>
+    </FrameLayout>
 </LinearLayout>

@@ -1,13 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="#baf673">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDF991AE">
+
 
     <TextView
+        android:id="@+id/tvTitleFAQs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "FAQ Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        />
-</RelativeLayout>
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="82dp"
+        android:fontFamily="@font/arbutus_slab"
+        android:text="FAQs"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/imChemistry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <ImageView
+        android:id="@+id/imChemistry"
+        android:layout_width="420dp"
+        android:layout_height="225dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228"
+        app:srcCompat="@mipmap/chemistry"
+        tools:layout_constraintCircleRadius="2sp" />
+
+    <ImageView
+        android:id="@+id/imPhysics"
+        android:layout_width="411dp"
+        android:layout_height="225dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786"
+        app:srcCompat="@mipmap/physics" />
+
+    <TextView
+        android:id="@+id/tvChemistry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="Chemistry"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/imChemistry"
+        app:layout_constraintEnd_toEndOf="@+id/imChemistry"
+        app:layout_constraintStart_toStartOf="@+id/imChemistry" />
+
+    <TextView
+        android:id="@+id/tvPhysics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Physics"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.837" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

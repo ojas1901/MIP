@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context=".student.askDoubt">
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="44dp"
+        android:fontFamily="@font/arbutus_slab"
+        android:text="Add new FAQ"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/spSubject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spSubject"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="511dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAsk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:layout_marginLeft="47dp"
+        android:layout_marginEnd="80dp"
+        android:text="Select Subject"
+        app:layout_constraintBottom_toBottomOf="@+id/spSubject"
+        app:layout_constraintEnd_toStartOf="@+id/spSubject"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spSubject" />
+
+    <Spinner
+        android:id="@+id/spChapter"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="469dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/spSubject" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginBottom="7dp"
+        android:text="Select Chapter"
+        app:layout_constraintBottom_toBottomOf="@+id/spChapter"
+        app:layout_constraintEnd_toStartOf="@+id/spChapter"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAskDoubt"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="156dp"
+        android:fontFamily="@font/arbutus_slab"
+        android:text="Solution"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/etDoubt"
+        android:layout_width="346dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/backborder"
+        android:gravity="center_horizontal"
+        android:hint="Solution goes here"
+        android:paddingTop="5dp"
+        android:maxLines="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAskDoubt"
+        tools:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/btnAsk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="Add"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDoubt"
+        app:layout_constraintVertical_bias="0.431" />
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arbutus_slab"
+        android:gravity="center_horizontal"
+        android:text="Question"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvAskDoubt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintVertical_bias="0.67" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="346dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:background="@drawable/backborder"
+        android:gravity="center_horizontal"
+        android:hint="Enter the question here"
+        android:paddingTop="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvAskDoubt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
+        tools:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

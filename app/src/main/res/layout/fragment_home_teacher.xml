@@ -1,17 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#DEDEDE"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="12dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground">
-
-        app:cardElevation="8dp">
+        android:layout_margin="16dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,14 +13,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/background_gradient_navbar" />
+                android:src="@drawable/back" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
                 <TextView
-                    android:id="@+id/tvQuestionAsked"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -35,10 +27,9 @@
                     android:textColor="#000"
                     android:textSize="18sp" />
                 <TextView
-                    android:id="@+id/tvAskedBy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Asked by"
+                    android:text="Username"
                     android:textColor="#555" />
             </LinearLayout>
             <LinearLayout
@@ -47,12 +38,12 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Solve Doubt"
+                    android:text="Answer"
                     android:theme="@style/PrimaryFlatButton" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mark Duplicate"
+                    android:text="Mark as FAQ"
                     android:theme="@style/PrimaryFlatButton" />
             </LinearLayout>
         </LinearLayout>

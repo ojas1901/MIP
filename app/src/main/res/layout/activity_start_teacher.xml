@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context=".teacher.startTeacher">
+
+    <FrameLayout
+        android:id="@+id/fragment_container_teacher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_teacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom = "false"
+        android:layout_gravity="bottom|center"
+        app:menu="@menu/bottom_navigation_teacher"
+        app:itemIconTint="@color/colorPrimaryDark"
+        android:background="@drawable/background_gradient_navbar"
+        />
+    </FrameLayout>
+</RelativeLayout>
