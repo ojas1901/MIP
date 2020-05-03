@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Register extends AppCompatActivity {
     EditText etusername, etpassword, etemail;
@@ -32,7 +30,18 @@ public class Register extends AppCompatActivity {
     String user, pass ,email;
     TextView login;
     ArrayList<String> al = new ArrayList<>();
-    String type="";
+    String typeStudent = "Student", typeFaculty = "Faculty";
+    static String type="";
+    String FacEmails[] = new String[]{"archana.sharma@somaiya.edu","bharati.c@somaiya.edu","jitendrasatam@somaiya.edu","pushpendrarai@somaiya.edu","santoshmani@somaiya.edu","shrikantchawade@somaiya.edu","surenpatwardhan@somaiya.edu"};
+
+
+    static  public String getType() {
+        return type;
+    }
+
+    static public void setType(String t) {
+        type = t;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,9 @@ public class Register extends AppCompatActivity {
                 user = etusername.getText().toString();
                 pass = etpassword.getText().toString();
                 email = etemail.getText().toString();
+
+
+
                 if(user.equals("")){
                     etusername.setError("can't be blank");
                 }
@@ -81,32 +93,27 @@ public class Register extends AppCompatActivity {
                     pd.setMessage("Loading...");
                     pd.show();
 
-                    String emailCheckurl = "https://androidchatapp-aa4b9.firebaseio.com/Faculty.json";
-                    StringRequest request0 = new StringRequest(Request.Method.GET, emailCheckurl, new Response.Listener<String>(){
-                        @Override
-                        public void onResponse(String s)
-                        {
-                            doOnSuccess(s);
+                    setType(typeStudent);
+                    for(String f: FacEmails)
+                    {
+                        if(f.equals(email)) {
+                            setType(typeFaculty);
+                            break;
                         }
-                        },new Response.ErrorListener(){
-                        @Override
-                        public void onErrorResponse(VolleyError volleyError) {
-                            System.out.println("" + volleyError);
-                        }
-                    });
+                    }
 
                     RequestQueue rQueue = Volley.newRequestQueue(Register.this);
-                    rQueue.add(request0);
-
                     String url = "https://androidchatapp-aa4b9.firebaseio.com/users.json";
                     StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                         @Override
                         public void onResponse(String s) {
                             Firebase reference = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/users");
 
-                            if(s.equals("null")) {
+                            if(s.equals("null"))
+                            {
                                 reference.child(user).child("password").setValue(pass);
                                 reference.child(user).child("email").setValue(email);
+                                reference.child(user).child("type").setValue(getType());
                                 Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
                             }
                             else {
@@ -116,6 +123,7 @@ public class Register extends AppCompatActivity {
                                     if (!obj.has(user)) {
                                         reference.child(user).child("password").setValue(pass);
                                         reference.child(user).child("email").setValue(email);
+                                        reference.child(user).child("type").setValue(getType());
                                         Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
                                     } else {
                                         Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();
@@ -136,46 +144,57 @@ public class Register extends AppCompatActivity {
                             pd.dismiss();
                         }
                     });
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     rQueue.add(request);
                 }
             }
         });
     }
-
-    public void doOnSuccess(String s){
-        try {
-
-            boolean fac = false;
-            JSONObject obj = new JSONObject(s);
-            Iterator i = obj.keys();
-            String key = "";
-
-            while(i.hasNext()){
-                key = i.next().toString();
-
-                if(!key.equals(UserDetails.username)) {
-                    al.add(key);
-                }
-                totalUsers++;
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        if(totalUsers <=1){
-            noUsersText.setVisibility(View.VISIBLE);
-            usersList.setVisibility(View.GONE);
-        }
-        else{
-            noUsersText.setVisibility(View.GONE);
-            usersList.setVisibility(View.VISIBLE);
-            usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al));
-        }
-
-        pd.dismiss();
-    }
-
-
-
 }
+
+
+/*
+  String emailCheckurl = "https://androidchatapp-aa4b9.firebaseio.com/Faculty.json";
+                    StringRequest request0 = new StringRequest(Request.Method.GET, emailCheckurl, new Response.Listener<String>(){
+                        @Override
+                        public void onResponse(String s)
+                        {
+
+                            try {
+                                Firebase fref = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/Faculty");
+                                boolean fac = false;
+                                JSONObject obj = new JSONObject(s);
+                                Iterator i = obj.keys();
+                                String key = "";
+                                String nodeEmail;
+                                while(i.hasNext()){
+                                    key = i.next().toString();
+                                    nodeEmail  = fref.child(key).child("email").toString();
+                                    if(nodeEmail.equals(email)) {
+                                        fac = true;
+                                        break;
+                                    }
+                                }
+                                if(fac)
+                                    setType(typeFaculty);
+                                else
+                                    setType(typeStudent);
+                                Toast.makeText(Register.this, "Type Set", Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        },new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+                            System.out.println("" + volleyError);
+                        }
+                    });
+                    pd.dismiss();
+ rQueue.add(request0);
+* */

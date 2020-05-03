@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pd.chatapp.student.startStudent;
+import com.pd.chatapp.teacher.startTeacher;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +29,7 @@ public class Login extends AppCompatActivity {
     TextView registerUser;
     EditText username, password;
     Button loginButton;
-    String user, pass, email;
+    String user, pass, email, type;
     boolean isFaculty;
     private DatabaseReference mDatabase;
 
@@ -108,10 +109,18 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(Login.this, "user not found", Toast.LENGTH_LONG).show();
                                     }
                                     else if(obj.getJSONObject(user).getString("password").equals(pass)){
+                                        type = obj.getJSONObject(user).getString("type");
+                                        email= obj.getJSONObject(user).getString("email");
+
                                         UserDetails.username = user;
                                         UserDetails.password = pass;
+                                        UserDetails.email = email;
+                                        UserDetails.type = type;
 
-                                        startActivity(new Intent(Login.this, startStudent.class));
+                                        if(type.equals("Student"))
+                                            startActivity(new Intent(Login.this, startStudent.class));
+                                        else if(type.equals("Faculty"))
+                                            startActivity(new Intent(Login.this, startTeacher.class));
                                         Login.this.finish();
                                     }
                                     else {

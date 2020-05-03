@@ -4,4 +4,5 @@ public class UserDetails {
     static String password = "";
     static String email = "";
     static String chatWith = "";
+    static String type = "";
 }

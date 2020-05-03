@@ -5,7 +5,10 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
 
-
+    <item
+        android:id="@+id/nav_addfaq_teacher"
+        android:icon="@drawable/ic_add_circle_outline_black_24dp"
+        android:title="Add FAQ" />
 
     <item
         android:id="@+id/nav_history_teacher"
@@ -16,4 +19,7 @@
         android:id="@+id/nav_more_teacher"
         android:icon="@drawable/ic_menu_black_24dp"
         android:title="@string/title_more" />
+
+
+
 </menu>
