@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.pd.chatapp.Chat;
 import com.pd.chatapp.R;
+import com.pd.chatapp.UserDetails;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,7 +66,7 @@ public class teacherList extends AppCompatActivity {
         usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                studentUserDetails.chatWith = al.get(position);
+                UserDetails.chatWith = al.get(position);
                 startActivity(new Intent(teacherList.this, Chat.class));
             }
         });
@@ -81,7 +82,7 @@ public class teacherList extends AppCompatActivity {
             while(i.hasNext()){
                 key = i.next().toString();
 
-                if(!key.equals(studentUserDetails.username)) {
+                if(!key.equals(UserDetails.username)) {
                     al.add(key);
                 }
 

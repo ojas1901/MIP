@@ -43,14 +43,6 @@ public class FAQFragment extends Fragment {
             }
         });
 
-        imPhysics.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                startActivity(new Intent(getContext(), addDoubt.class));
-
-                return true;
-            }
-        });
         return v;
     }
 }

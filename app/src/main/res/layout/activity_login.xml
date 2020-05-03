@@ -28,12 +28,14 @@
         android:layout_width="362dp"
         android:layout_height="49dp"
         android:layout_marginBottom="10dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/title_layout"
         android:hint="@string/enter_username"
         android:padding="10dp"
         android:inputType="text"
         android:maxLines="1"
-        android:textColor="#000000" />
+        android:textColor="#03001e"
+        android:layout_marginTop="10dp"
+        />
 
     <EditText
         android:id="@+id/password"
@@ -41,27 +43,31 @@
         android:layout_height="49dp"
         android:layout_marginBottom="10dp"
         android:padding="10dp"
-        android:background="#FFFFFF"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/title_layout"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:textColor="#000000" />
+        android:textColor="#03001e"
+        />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:background="#000000"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_gradient_navbar"
         android:textColor="#ffffff"
         android:text="@string/login" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Don't have an account yet?Click here to register"
-        android:textSize="20sp"
+        android:text="Don't have an account yet?\nClick here to register"
+        android:textSize="12sp"
         android:gravity="center"
+        android:fontFamily="@font/arbutus_slab"
         android:id="@+id/register"/>
 
 </LinearLayout>

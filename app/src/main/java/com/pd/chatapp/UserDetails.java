@@ -1,8 +1,8 @@
 package com.pd.chatapp;
 public class UserDetails {
-    static String username = "";
-    static String password = "";
-    static String email = "";
-    static String chatWith = "";
-    static String type = "";
+    public static String username = "";
+    public static String password = "";
+    public static String email = "";
+    public static String chatWith = "";
+    public static String type = "";
 }
