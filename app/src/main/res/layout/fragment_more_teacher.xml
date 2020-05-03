@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EDEFBECB"
-    tools:context=".student.ui.moreFragment">
+    tools:context=".teacher.ui.moreFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -46,7 +46,6 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tvMenuSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -114,11 +113,9 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="56dp"
-        android:layout_height="21dp"
-        android:gravity="center"
-        android:text="Student"
-        android:textSize="10sp"
+        android:layout_width="55dp"
+        android:layout_height="19dp"
+        android:text="Teacher"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
