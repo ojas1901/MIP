@@ -1,4 +1,4 @@
-package com.pd.chatapp.student;
+package com.pd.chatapp;
 
 public class FAQ {
     String Question, Answer, Chapter;

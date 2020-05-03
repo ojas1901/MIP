@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_home_teacher"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
 
-    <item
-        android:id="@+id/nav_FAQ"
-        android:icon="@drawable/ic_find_in_page_black_24dp"
-        android:title="FAQ" />
+
 
     <item
-        android:id="@+id/nav_history"
+        android:id="@+id/nav_history_teacher"
         android:icon="@drawable/ic_history_black_24dp"
         android:title="History" />
 
     <item
-        android:id="@+id/nav_menu"
+        android:id="@+id/nav_more_teacher"
         android:icon="@drawable/ic_menu_black_24dp"
-        android:title="More" />
+        android:title="@string/title_more" />
 </menu>

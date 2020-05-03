@@ -23,10 +23,9 @@ public class startTeacher extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_start_teacher);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_teacher);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
@@ -36,7 +35,7 @@ public class startTeacher extends AppCompatActivity {
         fabAskDoubt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(startTeacher.this, askDoubt.class));
+                startActivity(new Intent(startTeacher.this, addDoubt.class));
             }
         });
     }

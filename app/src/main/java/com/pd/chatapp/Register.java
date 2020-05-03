@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,11 +23,16 @@ import com.firebase.client.Firebase;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Register extends AppCompatActivity {
     EditText etusername, etpassword, etemail;
     Button registerButton;
     String user, pass ,email;
     TextView login;
+    ArrayList<String> al = new ArrayList<>();
+    String type="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +81,24 @@ public class Register extends AppCompatActivity {
                     pd.setMessage("Loading...");
                     pd.show();
 
-                    String url = "https://androidchatapp-aa4b9.firebaseio.com/users.json";
+                    String emailCheckurl = "https://androidchatapp-aa4b9.firebaseio.com/Faculty.json";
+                    StringRequest request0 = new StringRequest(Request.Method.GET, emailCheckurl, new Response.Listener<String>(){
+                        @Override
+                        public void onResponse(String s)
+                        {
+                            doOnSuccess(s);
+                        }
+                        },new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+                            System.out.println("" + volleyError);
+                        }
+                    });
 
+                    RequestQueue rQueue = Volley.newRequestQueue(Register.this);
+                    rQueue.add(request0);
+
+                    String url = "https://androidchatapp-aa4b9.firebaseio.com/users.json";
                     StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                         @Override
                         public void onResponse(String s) {
@@ -114,11 +136,46 @@ public class Register extends AppCompatActivity {
                             pd.dismiss();
                         }
                     });
-
-                    RequestQueue rQueue = Volley.newRequestQueue(Register.this);
                     rQueue.add(request);
                 }
             }
         });
     }
+
+    public void doOnSuccess(String s){
+        try {
+
+            boolean fac = false;
+            JSONObject obj = new JSONObject(s);
+            Iterator i = obj.keys();
+            String key = "";
+
+            while(i.hasNext()){
+                key = i.next().toString();
+
+                if(!key.equals(UserDetails.username)) {
+                    al.add(key);
+                }
+                totalUsers++;
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(totalUsers <=1){
+            noUsersText.setVisibility(View.VISIBLE);
+            usersList.setVisibility(View.GONE);
+        }
+        else{
+            noUsersText.setVisibility(View.GONE);
+            usersList.setVisibility(View.VISIBLE);
+            usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al));
+        }
+
+        pd.dismiss();
+    }
+
+
+
 }

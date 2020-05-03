@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,26 +16,22 @@ import com.pd.chatapp.R;
 
 public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     String[] Subjects = {"Physics","Chemistry"};
-
     String[] Physics = {"Solid State Physics","Dielectrics, Magnetic and Superconducting Properties of Materials", "Quantum and Opto-electronics","Sensors and Transducers", "Optics", "Electrodynamics"};
     String[] Chemistry = {"Water and Green Chemistry","Energy", "Polymer Chemistry","Nano science and Nanotechnology" ,"Spectroscopy and Instrumental Methods of Analysis", "Synthetic Organic Reactions and Bio-inorganic Chemistry"};
     String[] noSubject = {"Please select subject first !"};
-    static String sub;
-    static String chap;
+    static String sub, chap;
 
-    public static void setSubject(String s)
-    { sub = s; }
 
-    public static String getSubject()
-    { return sub; }
-
-    public static void setChapter(String s)
-    { chap = s; }
-
-    public static String getChapter()
-    { return chap; }
+    public static void setSubject(String s) { sub = s; }
+    public static String getSubject() { return sub; }
+    public static void setChapter(String s) { chap = s; }
+    public static String getChapter() { return chap; }
 
     Button btnAsk;
+    EditText etDoubt;
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         sub = "Physics";
@@ -44,18 +41,16 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
 
         final Spinner spinSubject = (Spinner)findViewById (R.id.spSubject);
         final Spinner spinChapter = (Spinner) findViewById (R.id.spChapter);
-
-        btnAsk = findViewById(R.id.btnAsk);
         ArrayAdapter<String> subjectList =  new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,Subjects);
-
         final ArrayAdapter<String> chapterListPhysics =  new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,Physics);
         final ArrayAdapter<String> chapterListChemistry =  new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,Chemistry);
-
         spinSubject.setAdapter(subjectList);
         //spinChapter.setAdapter(chapterListPhysics);
 
 
 
+        btnAsk = findViewById(R.id.btnAsk);
+        etDoubt = findViewById(R.id.etDoubt);
         spinSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -109,6 +104,14 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
         btnAsk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                if(etDoubt.getText().toString().length() == 0)
+                {
+                    etDoubt.setError("Please enter your doubt !");
+                    etDoubt.requestFocus();
+                    return;
+                }
                 Intent intent = new Intent(askDoubt.this, teacherList.class);
                 String Sub = getSubject();
                 intent.putExtra("subject", Sub);
@@ -126,5 +129,11 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
 
     public void onNothingSelected(AdapterView<?> parent){
         Toast.makeText(this, "Choose Countries :", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

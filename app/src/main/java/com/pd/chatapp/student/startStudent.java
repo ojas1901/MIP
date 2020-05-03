@@ -19,6 +19,7 @@ import com.pd.chatapp.student.ui.moreFragment;
 public class startStudent extends AppCompatActivity {
 
     FloatingActionButton fabAskDoubt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class startStudent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(startStudent.this, askDoubt.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
@@ -57,10 +59,12 @@ public class startStudent extends AppCompatActivity {
                     break;
                 case R.id.nav_menu:
                     selectedFragment = new moreFragment();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     break;
 
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
 
             return true;
         }

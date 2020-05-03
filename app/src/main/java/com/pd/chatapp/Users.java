@@ -44,7 +44,6 @@ public class Users extends AppCompatActivity {
         pd.show();
 
         String url = "https://androidchatapp-aa4b9.firebaseio.com/users.json";
-
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
@@ -82,7 +81,6 @@ public class Users extends AppCompatActivity {
                 if(!key.equals(UserDetails.username)) {
                     al.add(key);
                 }
-
                 totalUsers++;
             }
 
