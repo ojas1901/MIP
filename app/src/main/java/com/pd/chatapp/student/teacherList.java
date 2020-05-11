@@ -33,6 +33,7 @@ public class teacherList extends AppCompatActivity {
     ArrayList<String> al = new ArrayList<>();
     int totalUsers = 0;
     ProgressDialog pd;
+    String Subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class teacherList extends AppCompatActivity {
 
         usersList = findViewById(R.id.teacherList);
         noUsersText = findViewById(R.id.tvNoUsers);
-
+        Subject = getIntent().getStringExtra("Subject");
         pd = new ProgressDialog(teacherList.this);
         pd.setMessage("Loading...");
         pd.show();
@@ -82,7 +83,9 @@ public class teacherList extends AppCompatActivity {
             while(i.hasNext()){
                 key = i.next().toString();
 
-                if(!key.equals(studentUserDetails.username)) {
+                if(!key.equals(UserDetails.username))
+                {
+                    if(obj.getJSONObject(key).getString("type").equals("Faculty"))
                     al.add(key);
                 }
 

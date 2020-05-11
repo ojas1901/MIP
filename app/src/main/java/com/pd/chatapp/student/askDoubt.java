@@ -191,7 +191,7 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
 
                 Intent intent = new Intent(askDoubt.this, teacherList.class);
                 String Sub = getSubject();
-                intent.putExtra("subject", Sub);
+                intent.putExtra("Subject", Sub);
                 startActivity(intent);
             }
         });
