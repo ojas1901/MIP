@@ -1,5 +1,6 @@
 package com.pd.chatapp.student;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,29 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.pd.chatapp.Doubt;
 import com.pd.chatapp.R;
+import com.pd.chatapp.Register;
+import com.pd.chatapp.UserDetails;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     String[] Subjects = {"Physics","Chemistry"};
@@ -46,6 +69,7 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
         final ArrayAdapter<String> chapterListChemistry =  new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,Chemistry);
         spinSubject.setAdapter(subjectList);
         //spinChapter.setAdapter(chapterListPhysics);
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
 
@@ -100,7 +124,7 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
             }
 
         });
-
+        Firebase.setAndroidContext(this);
         btnAsk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +136,59 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
                     etDoubt.requestFocus();
                     return;
                 }
+
+
+
+                final ProgressDialog pd = new ProgressDialog(askDoubt.this);
+                pd.setMessage("Loading...");
+                pd.show();
+                final String user = UserDetails.username;
+                RequestQueue rQueue = Volley.newRequestQueue(askDoubt.this);
+                String url = "https://androidchatapp-aa4b9.firebaseio.com/Question.json";
+                StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String s) {
+                        Firebase reference = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/Question");
+                        DateFormat df = new SimpleDateFormat("dd-MM-yyyy+HH:mm:ss");
+                        Date dateobj = new Date();
+                        String date = df.format(dateobj);
+
+                        if(s.equals("null"))
+                        {
+                            reference.child(user).child(date).child("Chapter").setValue(getChapter());
+                            reference.child(user).child(date).child("Subject").setValue(getSubject());
+                            reference.child(user).child(date).child("Text").setValue(etDoubt.getText().toString());
+                            Toast.makeText(askDoubt.this, "Doubt Registered", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            try {
+                                JSONObject obj = new JSONObject(s);
+
+
+                                    reference.child(user).child(date).child("Chapter").setValue(getChapter());
+                                    reference.child(user).child(date).child("Subject").setValue(getSubject());
+                                    reference.child(user).child(date).child("Text").setValue(etDoubt.getText().toString());
+                                    Toast.makeText(askDoubt.this, "Doubt Registered", Toast.LENGTH_LONG).show();
+
+
+                            } catch (JSONException e) {
+                                Toast.makeText(askDoubt.this, "Something Went Wrong !!", Toast.LENGTH_LONG).show();
+                                e.printStackTrace();
+                            }
+                        }
+
+                        pd.dismiss();
+                    }
+
+                },new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        System.out.println("Volley Error " + volleyError );
+                        pd.dismiss();
+                    }
+                });
+                rQueue.add(request);
+
                 Intent intent = new Intent(askDoubt.this, teacherList.class);
                 String Sub = getSubject();
                 intent.putExtra("subject", Sub);
@@ -128,7 +205,7 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     public void onNothingSelected(AdapterView<?> parent){
-        Toast.makeText(this, "Choose Countries :", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Choose  :", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot)
                         {
-                            //for (DataSnapshot chlid : dataSnapshot.getChildren()){ }
+                            //for (DataSnapshot child : dataSnapshot.getChildren()){ }
                             if(dataSnapshot.getValue().toString().equals(user))
                             {
                                 isFaculty = true;
