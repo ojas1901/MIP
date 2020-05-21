@@ -3,29 +3,46 @@
     android:layout_height="match_parent"
     android:background="#DEDEDE"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/KJSCE"
+        android:layout_width="match_parent"
+        android:layout_height="206dp"
+        android:src="@drawable/kjsce" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="12dp">
 
         app:cardElevation="8dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/background_gradient_navbar" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
+
                 <TextView
                     android:id="@+id/tvQuestionAsked"
                     android:layout_width="match_parent"
@@ -34,6 +51,7 @@
                     android:text="Question"
                     android:textColor="#000"
                     android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/tvAskedBy"
                     android:layout_width="match_parent"
@@ -41,14 +59,17 @@
                     android:text="Asked by"
                     android:textColor="#555" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Solve Doubt"
                     android:theme="@style/PrimaryFlatButton" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
