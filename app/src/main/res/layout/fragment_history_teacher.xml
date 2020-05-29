@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "Teacher History Fragment"
+        android:text = "Redirect to Chat"
         android:textSize="30sp"
         android:layout_centerInParent="true"
         />

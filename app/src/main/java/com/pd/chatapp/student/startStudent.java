@@ -27,10 +27,6 @@ public class startStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
 
         fabAskDoubt = findViewById(R.id.fabAskQuestion);
@@ -74,10 +70,10 @@ public class startStudent extends AppCompatActivity {
                 case R.id.nav_history:
                     selectedFragment = new historyFragment();
                     break;
-                case R.id.nav_menu:
+               /* case R.id.nav_menu:
                     selectedFragment = new moreFragment();
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    break;
+                    break;*/
 
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
@@ -86,4 +82,9 @@ public class startStudent extends AppCompatActivity {
             return true;
         }
     };
+
+
 }
+
+
+
