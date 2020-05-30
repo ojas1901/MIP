@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.pd.chatapp.student.homeActivity;
 import com.pd.chatapp.student.startStudent;
 import com.pd.chatapp.teacher.startTeacher;
 
@@ -118,7 +119,7 @@ public class Login extends AppCompatActivity {
                                         UserDetails.type = type;
 
                                         if(type.equals("Student"))
-                                            startActivity(new Intent(Login.this, startStudent.class));
+                                            startActivity(new Intent(Login.this, homeActivity.class));
                                         else if(type.equals("Faculty"))
                                             startActivity(new Intent(Login.this, startTeacher.class));
                                         Login.this.finish();

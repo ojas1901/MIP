@@ -73,7 +73,8 @@
         android:text="Select Chapter"
         app:layout_constraintBottom_toBottomOf="@+id/spChapter"
         app:layout_constraintEnd_toStartOf="@+id/spChapter"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="79dp" />
 
     <TextView
         android:id="@+id/tvAskDoubt"

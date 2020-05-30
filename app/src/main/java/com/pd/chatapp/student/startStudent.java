@@ -26,11 +26,33 @@ public class startStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        int page = getIntent().getIntExtra("Page",1);
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
+        Fragment selectedFragment = null;
+
+        switch (page)
+        {
+            case 2:
+                selectedFragment = new FAQFragment();
+                break;
+            case 3:
+                selectedFragment = new historyFragment();
+                break;
+            case 4:
+                selectedFragment = new moreFragment();
+                break;
+               /* case R.id.nav_menu:
+                    selectedFragment = new moreFragment();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    break;*/
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+
+
 
         fabAskDoubt = findViewById(R.id.fabAskQuestion);
-
         fabAskDoubt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,19 +63,19 @@ public class startStudent extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        startStudent.super.onBackPressed();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        new AlertDialog.Builder(this)
+//                .setMessage("Are you sure you want to exit?")
+//                .setCancelable(false)
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        startStudent.super.onBackPressed();
+//                    }
+//                })
+//                .setNegativeButton("No", null)
+//                .show();
+//    }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener  = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
