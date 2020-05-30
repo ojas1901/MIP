@@ -20,13 +20,17 @@ import com.pd.chatapp.student.ui.homeFragment;
 import com.pd.chatapp.student.ui.moreFragment;
 public class startStudent extends AppCompatActivity {
 
-    FloatingActionButton fabAskDoubt;
+//    FloatingActionButton fabAskDoubt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         int page = getIntent().getIntExtra("Page",1);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
 
         Fragment selectedFragment = null;
@@ -52,14 +56,14 @@ public class startStudent extends AppCompatActivity {
 
 
 
-        fabAskDoubt = findViewById(R.id.fabAskQuestion);
-        fabAskDoubt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(startStudent.this, askDoubt.class));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
+//        fabAskDoubt = findViewById(R.id.fabAskQuestion);
+//        fabAskDoubt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(startStudent.this, askDoubt.class));
+//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//            }
+//        });
     }
 
 
@@ -83,19 +87,20 @@ public class startStudent extends AppCompatActivity {
 
             switch (item.getItemId())
             {
-                case R.id.nav_home:
-                    selectedFragment = new homeFragment();
-                    break;
+//                case R.id.nav_home:
+//                    startActivity(new Intent(startStudent.this, homeActivity.class));
+//                    finish();
+//                    break;
                 case R.id.nav_FAQ:
                     selectedFragment = new FAQFragment();
                     break;
                 case R.id.nav_history:
                     selectedFragment = new historyFragment();
                     break;
-               /* case R.id.nav_menu:
+                case R.id.nav_menu:
                     selectedFragment = new moreFragment();
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    break;*/
+                    break;
 
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

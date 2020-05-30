@@ -13,16 +13,16 @@
         android:layout_height="match_parent"
         >
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAskQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="146dp"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="5dp"
-            android:clickable="true"
-            app:elevation="15dp"
-            app:srcCompat="@android:drawable/ic_menu_add"
-            app:useCompatPadding="true" />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fabAskQuestion"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="146dp"-->
+<!--            android:layout_gravity="bottom|center"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:clickable="true"-->
+<!--            app:elevation="15dp"-->
+<!--            app:srcCompat="@android:drawable/ic_menu_add"-->
+<!--            app:useCompatPadding="true" />-->
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

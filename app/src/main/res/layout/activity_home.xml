@@ -16,12 +16,24 @@
         android:background="#fcfcfc"
         android:gravity="center"
         android:id="@+id/fragment_container123">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="210dp"
+            android:textStyle="bold"
+            android:text="Dashboard">
+
+        </TextView>
+
         <ImageView
             android:id="@+id/KJSCE"
             android:layout_width="wrap_content"
             android:layout_height="206dp"
             android:padding="10dp"
             android:src="@drawable/kjsce" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
