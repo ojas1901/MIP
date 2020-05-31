@@ -1,5 +1,6 @@
 package com.pd.chatapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -104,17 +105,23 @@ public class Chat extends AppCompatActivity {
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp2.weight = 7.0f;
+        lp2.setMargins(5,10,5,10);
 
         if(type == 1) {
-            lp2.gravity = Gravity.LEFT;
-            textView.setBackgroundResource(R.drawable.bubble_in);
-        }
-        else{
             lp2.gravity = Gravity.RIGHT;
             textView.setBackgroundResource(R.drawable.bubble_out);
+            textView.setPadding(20,15,20,15);
+            textView.setTextColor(Color.WHITE);
+        }
+        else{
+            lp2.gravity = Gravity.LEFT;
+            textView.setBackgroundResource(R.drawable.bubble_in);
+            textView.setPadding(20,15,20,15);
+
         }
         textView.setLayoutParams(lp2);
         layout.addView(textView);
+
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
 }

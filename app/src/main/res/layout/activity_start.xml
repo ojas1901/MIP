@@ -34,6 +34,7 @@
             app:menu="@menu/bottom_navigation"
             app:itemIconTint="@color/backgroundcolor"
             android:background="#000000"
+            app:itemTextColor="#ffffff"
             />
     </FrameLayout>
 </RelativeLayout>

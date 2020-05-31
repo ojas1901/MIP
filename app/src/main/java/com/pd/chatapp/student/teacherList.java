@@ -67,7 +67,7 @@ public class teacherList extends AppCompatActivity {
         usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                studentUserDetails.chatWith = al.get(position);
+                UserDetails.chatWith = al.get(position);
                 startActivity(new Intent(teacherList.this, Chat.class));
             }
         });
