@@ -69,7 +69,7 @@
                         android:layout_height="64dp"
                         android:background="@drawable/cerclebackgroundpurple"
                         android:padding="10dp"
-                        android:src="@drawable/ic_attach_money_black_24dp" />
+                        android:src="@drawable/ic_history_24dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                         android:layout_height="64dp"
                         android:background="@drawable/cerclebackgroundpink"
                         android:padding="10dp"
-                        android:src="@drawable/ic_gamer_24" />
+                        android:src="@drawable/ic_settings_24dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -211,7 +211,7 @@
                         android:layout_height="64dp"
                         android:background="@drawable/cerclebackgroundyellow"
                         android:padding="10dp"
-                        android:src="@drawable/ic_attach_file_black_24dp" />
+                        android:src="@drawable/ic_faq_black_24dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
