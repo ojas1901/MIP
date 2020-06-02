@@ -51,7 +51,7 @@ public class Chat extends AppCompatActivity {
             public void onClick(View v) {
                 String messageText = messageArea.getText().toString();
 
-                if(!messageText.equals("")){
+                if(!messageText.equals("") && !messageText.equals("\n") && !messageText.matches("[\\n\\r]+") && !messageText.trim().isEmpty()){
                     Map<String, String> map = new HashMap<String, String>();
                     map.put("message", messageText);
                     map.put("user", UserDetails.username);
@@ -117,6 +117,7 @@ public class Chat extends AppCompatActivity {
             lp2.gravity = Gravity.LEFT;
             textView.setBackgroundResource(R.drawable.bubble_in);
             textView.setPadding(20,15,20,15);
+            textView.setTextColor(Color.BLACK);
 
         }
         textView.setLayoutParams(lp2);

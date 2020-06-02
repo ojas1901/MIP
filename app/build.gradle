@@ -35,6 +35,7 @@ dependencies {
 
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
