@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
+import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pd.chatapp.Doubt;
@@ -42,7 +43,7 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
     String[] Physics = {"Solid State Physics","Dielectrics, Magnetic and Superconducting Properties of Materials", "Quantum and Opto-electronics","Sensors and Transducers", "Optics", "Electrodynamics"};
     String[] Chemistry = {"Water and Green Chemistry","Energy", "Polymer Chemistry","Nano science and Nanotechnology" ,"Spectroscopy and Instrumental Methods of Analysis", "Synthetic Organic Reactions and Bio-inorganic Chemistry"};
     String[] noSubject = {"Please select subject first !"};
-    static String sub, chap;
+    static String sub, chap, date, date2;
 
 
     public static void setSubject(String s) { sub = s; }
@@ -139,59 +140,86 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
 
 
 
-                final ProgressDialog pd = new ProgressDialog(askDoubt.this);
-                pd.setMessage("Loading...");
-                pd.show();
+//                final ProgressDialog pd = new ProgressDialog(askDoubt.this);
+//                pd.setMessage("Loading...");
+//                pd.show();
                 final String user = UserDetails.username;
-                RequestQueue rQueue = Volley.newRequestQueue(askDoubt.this);
-                String url = "https://androidchatapp-aa4b9.firebaseio.com/Question.json";
-                StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String s) {
-                        Firebase reference = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/Question");
-                        DateFormat df = new SimpleDateFormat("dd-MM-yyyy+HH:mm:ss");
-                        Date dateobj = new Date();
-                        String date = df.format(dateobj);
+//                RequestQueue rQueue = Volley.newRequestQueue(askDoubt.this);
+//                String url = "https://androidchatapp-aa4b9.firebaseio.com/Question.json";
+//                StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+//                    @Override
+//                    public void onResponse(String s) {
+//
+//                        DateFormat df = new SimpleDateFormat("dd-MM-yyyy+HH:mm:ss");
+//                        Date dateobj = new Date();
+//                        date = df.format(dateobj);
+//
+//                        Firebase reference = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/Question/"+user+"/"+date);
+//
+//                        if(s.equals("null"))
+//                        {
+//                            DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+//                            Date dateobj2 = new Date();
+//                            date2 = df2.format(dateobj2);
+//
+//                            reference.child("Chapter").setValue(getChapter());
+//                            reference.child("Subject").setValue(getSubject());
+//                            reference.child("Question").setValue(etDoubt.getText().toString());
+//                            reference.child("Answer").setValue("");
+//                            reference.child("askedBy").setValue(UserDetails.username);
+//                            reference.child("isAccepted").setValue("true");
+//                            reference.child("status").setValue("not answered");
+//                            reference.child("time").setValue(date2);
+//
+//                            Toast.makeText(askDoubt.this, "Doubt Registered", Toast.LENGTH_LONG).show();
+//                        }
+//                        else {
+//                            try {
+//                                JSONObject obj = new JSONObject(s);
+//
+//
+//                                    reference.child("Chapter").setValue(getChapter());
+//                                    reference.child("Subject").setValue(getSubject());
+//                                    reference.child("Text").setValue(etDoubt.getText().toString());
+//                                    Toast.makeText(askDoubt.this, "Doubt Registered", Toast.LENGTH_LONG).show();
+//
+//
+//                            } catch (JSONException e) {
+//                                Toast.makeText(askDoubt.this, "Something Went Wrong !!", Toast.LENGTH_LONG).show();
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                        pd.dismiss();
+//                    }
+//
+//                },new Response.ErrorListener(){
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+//                        System.out.println("Volley Error " + volleyError );
+//                        pd.dismiss();
+//                    }
+//                });
+//                rQueue.add(request);
 
-                        if(s.equals("null"))
-                        {
-                            reference.child(user).child(date).child("Chapter").setValue(getChapter());
-                            reference.child(user).child(date).child("Subject").setValue(getSubject());
-                            reference.child(user).child(date).child("Text").setValue(etDoubt.getText().toString());
-                            Toast.makeText(askDoubt.this, "Doubt Registered", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            try {
-                                JSONObject obj = new JSONObject(s);
+                DateFormat df = new SimpleDateFormat("dd-MM-yyyy+HH:mm:ss");
+                Date dateobj = new Date();
+                date = df.format(dateobj);
 
-
-                                    reference.child(user).child(date).child("Chapter").setValue(getChapter());
-                                    reference.child(user).child(date).child("Subject").setValue(getSubject());
-                                    reference.child(user).child(date).child("Text").setValue(etDoubt.getText().toString());
-                                    Toast.makeText(askDoubt.this, "Doubt Registered", Toast.LENGTH_LONG).show();
-
-
-                            } catch (JSONException e) {
-                                Toast.makeText(askDoubt.this, "Something Went Wrong !!", Toast.LENGTH_LONG).show();
-                                e.printStackTrace();
-                            }
-                        }
-
-                        pd.dismiss();
-                    }
-
-                },new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        System.out.println("Volley Error " + volleyError );
-                        pd.dismiss();
-                    }
-                });
-                rQueue.add(request);
+                DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                Date dateobj2 = new Date();
+                date2 = df2.format(dateobj2);
 
                 Intent intent = new Intent(askDoubt.this, teacherList.class);
                 String Sub = getSubject();
+                String que = etDoubt.getText().toString();
+
                 intent.putExtra("Subject", Sub);
+                intent.putExtra("Chapter", getChapter());
+                intent.putExtra("Node Date", date);
+                intent.putExtra("Date", date2);
+                intent.putExtra("Question", que);
+
                 startActivity(intent);
             }
         });
