@@ -60,8 +60,10 @@ public class historyFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     String username  = dsp.getKey();
+                    //Toast.makeText(getActivity(), username , Toast.LENGTH_SHORT).show();
                     //String scores   = dsp.child("scorehigh").getValue().toString();
                     isPresent = false;
                     for(int i = 0; i<Userlist.size(); i++)
@@ -90,8 +92,13 @@ public class historyFragment extends Fragment {
                 {
                     tvNoChats.setVisibility(View.VISIBLE);
                     mrecyclerView.setVisibility(View.GONE);
+                    ViewGroup.LayoutParams layoutParams = mrecyclerView.getLayoutParams();
+                    layoutParams.height = 0;
+                    layoutParams.width  = 0;
+                    mrecyclerView.setLayoutParams(layoutParams);
                     pd.dismiss();
                 }
+
                 }
 
             @Override
@@ -158,6 +165,7 @@ public class historyFragment extends Fragment {
                             break;
                         }
                     }
+
                     if(! isPresent)
                         Userlist.add(username); //add result into array list
                 }
@@ -165,6 +173,7 @@ public class historyFragment extends Fragment {
 
                     tvNoChats.setVisibility(View.GONE);
                     mrecyclerView.setVisibility(View.VISIBLE);
+
                     mrecyclerView.setLayoutManager(new LinearLayoutManager(V.getContext()));
                     adapter = new ChatEntityAdapter(getActivity(), Userlist);
                     mrecyclerView.setAdapter(adapter);
@@ -174,6 +183,9 @@ public class historyFragment extends Fragment {
                 {
                     tvNoChats.setVisibility(View.VISIBLE);
                     mrecyclerView.setVisibility(View.GONE);
+                    ViewGroup.LayoutParams layoutParams = mrecyclerView.getLayoutParams();
+                    layoutParams.height = 0;
+                    mrecyclerView.setLayoutParams(layoutParams);
                     pd.dismiss();
                 }
             }

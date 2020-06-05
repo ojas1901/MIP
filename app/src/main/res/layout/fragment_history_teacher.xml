@@ -23,29 +23,32 @@
             android:gravity="center_horizontal"
             />
     </LinearLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="You currently don't have\nany queries regarding the answers !"
+        android:id="@+id/tvNoChats"
+        android:visibility="gone"
+        android:gravity="center"
+        />
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlTeacherHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="50dp"
+        android:paddingBottom="50dp"
         >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="You currently don't have\nany queries regarding the answers !"
-            android:id="@+id/tvNoChats"
-            android:visibility="gone"
-            android:gravity="center"
-            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTeacherHistory"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+
             android:scrollbars="vertical"
             />
+
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
