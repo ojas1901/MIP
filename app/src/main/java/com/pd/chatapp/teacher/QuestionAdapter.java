@@ -52,6 +52,8 @@ public class QuestionAdapter extends FirebaseRecyclerAdapter<Question, QuestionA
             //holder.itemView.setVisibility(View.INVISIBLE);
             holder.tvStatus.setText("Not Answered");
             holder.tvStatus.setTextColor(Color.RED);
+            holder.btnMarkAsFAQ.setVisibility(View.INVISIBLE);
+
         }
         holder.btnAnswer.setOnClickListener(new View.OnClickListener() {
             @Override

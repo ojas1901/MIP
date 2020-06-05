@@ -19,6 +19,9 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,8 +46,8 @@ public class Chat extends AppCompatActivity {
         scrollView = findViewById(R.id.scrollView);
 
         Firebase.setAndroidContext(this);
-        reference1 = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
-        reference2 = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
+        reference1 = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/Messages/" + UserDetails.username + "/" + UserDetails.chatWith);
+        reference2 = new Firebase("https://androidchatapp-aa4b9.firebaseio.com/Messages/" + UserDetails.chatWith + "/" + UserDetails.username);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +56,17 @@ public class Chat extends AppCompatActivity {
 
                 if(!messageText.equals("") && !messageText.equals("\n") && !messageText.matches("[\\n\\r]+") && !messageText.trim().isEmpty()){
                     Map<String, String> map = new HashMap<String, String>();
+
+                    String datetime;
+
+                    DateFormat df = new SimpleDateFormat("E, dd MMM yyyy HH:mm");
+                    Date dateobj = new Date();
+                    datetime = df.format(dateobj);
+
                     map.put("message", messageText);
                     map.put("user", UserDetails.username);
+                    map.put("time", datetime);
+
                     reference1.push().setValue(map);
                     reference2.push().setValue(map);
                     messageArea.setText("");
