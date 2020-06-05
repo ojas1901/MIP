@@ -145,7 +145,7 @@ public class teacherList extends AppCompatActivity {
 
                 if(!key.equals(UserDetails.username))
                 {
-                    if(obj.getJSONObject(key).getString("type").equals("Faculty"))
+                    if(obj.getJSONObject(key).getString("type").equals("Faculty") && obj.getJSONObject(key).getString("subject").equals(Subject))
                     al.add(key);
                 }
 

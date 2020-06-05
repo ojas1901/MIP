@@ -114,6 +114,7 @@ public class Register extends AppCompatActivity {
                                 reference.child(user).child("password").setValue(pass);
                                 reference.child(user).child("email").setValue(email);
                                 reference.child(user).child("type").setValue(getType());
+                                reference.child(user).child("subject").setValue("NA");
                                 Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
                             }
                             else {
@@ -124,6 +125,8 @@ public class Register extends AppCompatActivity {
                                         reference.child(user).child("password").setValue(pass);
                                         reference.child(user).child("email").setValue(email);
                                         reference.child(user).child("type").setValue(getType());
+                                        reference.child(user).child("subject").setValue("NA");
+
                                         Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
                                     } else {
                                         Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();
