@@ -32,7 +32,7 @@ public class Register extends AppCompatActivity {
     ArrayList<String> al = new ArrayList<>();
     String typeStudent = "Student", typeFaculty = "Faculty";
     static String type="";
-    String FacEmails[] = new String[]{"archana.sharma@somaiya.edu","bharati.c@somaiya.edu","jitendrasatam@somaiya.edu","pushpendrarai@somaiya.edu","santoshmani@somaiya.edu","shrikantchawade@somaiya.edu","surenpatwardhan@somaiya.edu"};
+    String FacEmails[] = new String[]{"archana.sharma@somaiya.edu","bharati.c@somaiya.edu","jitendrasatam@somaiya.edu","pushpendrarai@somaiya.edu","santoshmani@somaiya.edu","shrikantchawade@somaiya.edu","surenpatwardhan@somaiya.edu","druman@somaiya.edu"};
 
 
     static  public String getType() {
@@ -79,7 +79,7 @@ public class Register extends AppCompatActivity {
                 else if(pass.equals("")){
                     etpassword.setError("can't be blank");
                 }
-                else if(!user.matches("[@.A-Za-z0-9]+")){
+                else if(!user.matches("[@.A-Za-z0-9]+( )?[@.A-Za-z0-9]+")){
                     etusername.setError("only alphabet or number allowed");
                 }
                 else if(user.length()<5){
