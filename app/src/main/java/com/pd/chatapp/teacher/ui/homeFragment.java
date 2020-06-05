@@ -1,12 +1,11 @@
 package com.pd.chatapp.teacher.ui;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,16 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import com.pd.chatapp.Question;
 import com.pd.chatapp.R;
 import com.pd.chatapp.UserDetails;
-import com.pd.chatapp.student.FAQAdapter;
+import com.pd.chatapp.student.teacherList;
 import com.pd.chatapp.teacher.QuestionAdapter;
 
 public class homeFragment extends Fragment {
@@ -35,7 +29,7 @@ public class homeFragment extends Fragment {
     SwipeRefreshLayout mSwipeRefreshLayout;
     TextView tvNoQuestions;
     static int totalQuestions = 0;
-
+    ProgressDialog pd;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,9 +64,12 @@ public class homeFragment extends Fragment {
 //        });
 
 
+        pd = new ProgressDialog(getActivity());
+        pd.setMessage("Loading...");
+        pd.show();
         FirebaseRecyclerOptions<Question> options =
                 new FirebaseRecyclerOptions.Builder<Question>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Question").child(UserDetails.username), Question.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Question").child(UserDetails.username).orderByChild("status"), Question.class)
                         .build();
 
 
@@ -85,30 +82,36 @@ public class homeFragment extends Fragment {
 //            mrecyclerView.setVisibility(View.VISIBLE);
 //
 //        }
-        adapter = new QuestionAdapter(options);
+        adapter = new QuestionAdapter(getActivity(), options);
         mrecyclerView.setAdapter(adapter);
-
+        pd.dismiss();
 
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 doOnRefresh();
                 mSwipeRefreshLayout.setRefreshing(false);
+
             }
         });
         return v;
     }
 
     public void doOnRefresh(){
+        pd = new ProgressDialog(getActivity());
+        pd.setMessage("Loading...");
+        pd.show();
         FirebaseRecyclerOptions<Question> options =
                 new FirebaseRecyclerOptions.Builder<Question>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Question").child(UserDetails.username), Question.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Question").child(UserDetails.username).orderByChild("status"), Question.class)
                         .build();
 
-        adapter = new QuestionAdapter(options);
+        adapter = new QuestionAdapter(getActivity(), options);
         mrecyclerView.setAdapter(adapter);
         adapter.startListening();
+        pd.dismiss();
     }
 
     @Override

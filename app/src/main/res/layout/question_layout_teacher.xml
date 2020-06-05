@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:layout_width="match_parent"
+<androidx.cardview.widget.CardView
+    android:id="@+id/cvQuestionTeacher"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="16dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
@@ -21,13 +24,24 @@
             android:padding="10dp">
             <TextView
                 android:id="@+id/tvQues"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:gravity="start"
+                android:paddingLeft="5dp"
                 android:text="Question"
                 android:textColor="#000"
                 android:textSize="18sp" />
-
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Answered"
+                android:paddingLeft="5dp"
+                android:gravity="start"
+                android:textSize="15sp"
+                android:paddingRight="35dp"
+                android:textColor="#076012" />
         </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="Time"
             android:gravity="end"
-            android:paddingRight="35dp"
+            android:paddingRight="10dp"
             android:textColor="#555" />
     </LinearLayout>
         <LinearLayout
@@ -62,9 +76,11 @@
                 android:theme="@style/PrimaryFlatButton" />
             <Button
                 android:id="@+id/btnMarkAsFAQ"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mark as FAQ"
+                android:paddingRight="10dp"
+                android:gravity="end"
                 android:theme="@style/PrimaryFlatButton" />
         </LinearLayout>
     </LinearLayout>

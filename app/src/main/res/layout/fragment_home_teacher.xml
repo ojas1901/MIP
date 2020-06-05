@@ -16,6 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dashboard"
+            android:fontFamily="@font/arbutus_slab"
+            android:textStyle="bold"
+            android:textSize="18sp"
             android:gravity="center_horizontal"
             />
     </LinearLayout>

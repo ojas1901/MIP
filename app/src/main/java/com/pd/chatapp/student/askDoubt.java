@@ -221,6 +221,7 @@ public class askDoubt extends AppCompatActivity implements AdapterView.OnItemSel
                 intent.putExtra("Question", que);
 
                 startActivity(intent);
+                finish();
             }
         });
 

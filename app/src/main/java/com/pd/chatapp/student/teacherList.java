@@ -125,7 +125,7 @@ public class teacherList extends AppCompatActivity {
         map.put("askedBy", UserDetails.username);
         map.put("askedTo", Faculty);
         map.put("isAccepted", "true");
-        map.put("status", "not answered");
+        map.put("status", "pending");
         map.put("time", time);
 
         referenceStudent.push().setValue(map);

@@ -26,7 +26,7 @@
     <Spinner
         android:id="@+id/spSubject"
         android:layout_width="150dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="117dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"

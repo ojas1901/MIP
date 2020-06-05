@@ -20,5 +20,5 @@
     <string name="tab_a_label">Answered Doubts</string>
     <string name="tab_b_label">Unanswered Doubts</string>
 
-
+    <string name="answer_the_doubt"><b><u>Answer The Doubt</u></b></string>
 </resources>

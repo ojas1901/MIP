@@ -21,7 +21,7 @@ public class addDoubt extends AppCompatActivity implements AdapterView.OnItemSel
     String[] Subjects = {"Physics","Chemistry"};
     String[] Physics = {"Solid State Physics","Dielectrics, Magnetic and Superconducting Properties of Materials", "Quantum and Opto-electronics","Sensors and Transducers", "Optics", "Electrodynamics"};
     String[] Chemistry = {"Water and Green Chemistry","Energy", "Polymer Chemistry","Nano science and Nanotechnology" ,"Spectroscopy and Instrumental Methods of Analysis", "Synthetic Organic Reactions and Bio-inorganic Chemistry"};
-    String[] noSubject = {"Please select subject first !"};
+    //String[] noSubject = {"Please select subject first !"};
     static String sub, chap;
     DatabaseReference reff, refMain;
     public static void setSubject(String s) { sub = s; }
