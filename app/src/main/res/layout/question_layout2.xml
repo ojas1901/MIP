@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:id="@+id/cvQuestionStudent"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="16dp"
@@ -43,34 +41,21 @@
                 android:id="@+id/tvAskedTo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
+                android:padding="5dp"
                 android:textColor="#3E007C"
                 android:text="Asked to" />
             <TextView
                 android:id="@+id/tvStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Answered"
+                android:text="Not Answered"
+                android:paddingLeft="5dp"
                 android:gravity="end"
                 android:textSize="15sp"
                 android:paddingRight="15dp"
                 android:textColor="#076012" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/tvTapToViewAnswer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:gravity="center"
-                android:textSize="12sp"
-                android:text="Tap to view the answer"
-                />
-        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -82,25 +67,11 @@
             android:padding="10dp">
             <TextView
                 android:id="@+id/tvNote"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Still confused ?  Chat with faculty !"
-                android:textSize="12dp"
-
-
+                android:gravity="center_horizontal"
+                android:text="Faculty Has not answered your doubt yet"
                 />
-
-
-            <Button
-                android:id="@+id/btnChat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chat"
-                android:paddingRight="15dp"
-                android:layout_marginLeft="30dp"
-                android:gravity="center"
-
-                android:theme="@style/PrimaryFlatButton" />
 
         </LinearLayout>
     </LinearLayout>

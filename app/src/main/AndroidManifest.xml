@@ -13,8 +13,17 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".teacher.answerDoubt"></activity>
-        <activity android:name=".student.homeActivity" />
+
+
+        <activity
+            android:name=".student.viewAnswer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".teacher.answerDoubt"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".student.homeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".student.physicsFAQ"
             android:screenOrientation="portrait" />
