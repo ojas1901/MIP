@@ -12,6 +12,17 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/listTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="44dp"
+        android:fontFamily="@font/arbutus_slab"
+        android:gravity="center"
+        android:text="Select Faculty from the List below"
+        android:textSize="20sp" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/no_users_found"
