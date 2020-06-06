@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Register extends AppCompatActivity {
     EditText etusername, etpassword, etemail;
@@ -71,7 +72,7 @@ public class Register extends AppCompatActivity {
                 pass = etpassword.getText().toString();
                 email = etemail.getText().toString();
 
-
+                //String hashed = BCrypt.hashpw(pass, BCrypt.gensalt());
 
                 if(user.equals("")){
                     etusername.setError("can't be blank");
@@ -101,6 +102,8 @@ public class Register extends AppCompatActivity {
                             break;
                         }
                     }
+                    //pass = encryption(pass);
+                    //String decryptedString = decryption("Input Encrypted String");
 
                     RequestQueue rQueue = Volley.newRequestQueue(Register.this);
                     String url = "https://androidchatapp-aa4b9.firebaseio.com/users.json";
@@ -116,21 +119,51 @@ public class Register extends AppCompatActivity {
                                 reference.child(user).child("type").setValue(getType());
                                 reference.child(user).child("subject").setValue("NA");
                                 Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(Register.this, Login.class));
+
                             }
                             else {
                                 try {
                                     JSONObject obj = new JSONObject(s);
 
-                                    if (!obj.has(user)) {
-                                        reference.child(user).child("password").setValue(pass);
-                                        reference.child(user).child("email").setValue(email);
-                                        reference.child(user).child("type").setValue(getType());
-                                        reference.child(user).child("subject").setValue("NA");
+                                    Iterator i = obj.keys();
+                                    String key = "";
 
-                                        Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();
+                                    boolean emailPresent = false;
+                                    if (! obj.has(user))
+                                    {
+                                        while(i.hasNext())
+                                        {
+                                            key = i.next().toString();
+                                            if(obj.getJSONObject(key).getString("email").equals(email))
+                                            {
+                                                emailPresent = true;
+                                                break;
+                                            }
+
+                                        }
+
+                                        if (! emailPresent)
+                                        {
+                                            reference.child(user).child("password").setValue(pass);
+                                            reference.child(user).child("email").setValue(email);
+                                            reference.child(user).child("type").setValue(getType());
+                                            reference.child(user).child("subject").setValue("NA");
+
+                                            Toast.makeText(Register.this, "Registration successful !", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(Register.this, Login.class));
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(Register.this, "Email already exists\n   "+email, Toast.LENGTH_LONG).show();
+
+                                        }
                                     }
+
+                                    else
+                                        {
+                                        Toast.makeText(Register.this, "Username already exists", Toast.LENGTH_LONG).show();
+                                        }
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -157,6 +190,28 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+
+//    public String encryption(String strNormalText){
+//        String seedValue = "YourSecKey";
+//        String normalTextEnc="";
+//        try {
+//            normalTextEnc = AESHelper.encrypt(seedValue, strNormalText);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return normalTextEnc;
+//    }
+//    public String decryption(String strEncryptedText){
+//        String seedValue = "YourSecKey";
+//        String strDecryptedText="";
+//        try {
+//            strDecryptedText = AESHelper.decrypt(seedValue, strEncryptedText);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return strDecryptedText;
+//    }
+
 }
 
 

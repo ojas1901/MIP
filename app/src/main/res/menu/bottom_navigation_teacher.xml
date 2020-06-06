@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/nav_history_teacher"
-        android:icon="@drawable/ic_history_black_24dp"
+        android:icon="@drawable/ic_chat_black_24dp"
         android:title="History" />
 
     <item

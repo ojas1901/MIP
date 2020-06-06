@@ -25,20 +25,21 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="You currently don't have\nany doubts to answer !"
+        android:id="@+id/tvNoQuestions"
+        android:visibility="gone"
+        android:gravity="center"
+        />
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlTeacherHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="50dp"
         android:paddingBottom="50dp">
-        <!--        <TextView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="You currently don't have\nany doubts to answer !"-->
-        <!--            android:id="@+id/tvNoQuestions"-->
-        <!--            android:visibility="gone"-->
-        <!--            android:gravity="center"-->
-        <!--            />-->
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTeacherHome"

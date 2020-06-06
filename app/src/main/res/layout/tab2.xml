@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
+        android:paddingBottom="40dp"
+
         >
         <!--        <TextView-->
         <!--            android:layout_width="match_parent"-->

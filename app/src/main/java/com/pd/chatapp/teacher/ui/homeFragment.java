@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,7 +39,7 @@ public class homeFragment extends Fragment {
         mrecyclerView = v.findViewById(R.id.rvTeacherHome);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
         mSwipeRefreshLayout = v.findViewById(R.id.srlTeacherHome);
-        //tvNoQuestions = v.findViewById(R.id.tvNoQuestions);
+        tvNoQuestions = v.findViewById(R.id.tvNoQuestions);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
 
 //        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -72,15 +73,17 @@ public class homeFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Question").child(UserDetails.username).orderByChild("status"), Question.class)
                         .build();
 
-
-//        if(totalQuestions == 0){
+        //Toast.makeText(getActivity(), String.valueOf(options.getSnapshots().size()), Toast.LENGTH_SHORT).show();
+//        if(options.getSnapshots().size() == 0 )
+//        {
+//
 //            tvNoQuestions.setVisibility(View.VISIBLE);
 //            mrecyclerView.setVisibility(View.GONE);
 //        }
-//        else{
+//        else
+//            {
 //            tvNoQuestions.setVisibility(View.GONE);
 //            mrecyclerView.setVisibility(View.VISIBLE);
-//
 //        }
         adapter = new QuestionAdapter(getActivity(), options);
         mrecyclerView.setAdapter(adapter);

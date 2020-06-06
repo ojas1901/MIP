@@ -21,8 +21,9 @@
         android:layout_alignParentBottom = "false"
         android:layout_gravity="bottom|center"
         app:menu="@menu/bottom_navigation_teacher"
-        app:itemIconTint="@color/colorPrimaryDark"
-        android:background="@drawable/background_gradient_navbar"
+        app:itemIconTint="@color/backgroundcolor"
+        android:background="#000000"
+        app:itemTextColor="#ffffff"
         />
     </FrameLayout>
 </RelativeLayout>
