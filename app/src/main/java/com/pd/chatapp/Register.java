@@ -32,8 +32,10 @@ public class Register extends AppCompatActivity {
     TextView login;
     ArrayList<String> al = new ArrayList<>();
     String typeStudent = "Student", typeFaculty = "Faculty";
-    static String type="";
+    static String type="", subject="NA";
     String FacEmails[] = new String[]{"archana.sharma@somaiya.edu","bharati.c@somaiya.edu","jitendrasatam@somaiya.edu","pushpendrarai@somaiya.edu","santoshmani@somaiya.edu","shrikantchawade@somaiya.edu","surenpatwardhan@somaiya.edu","druman@somaiya.edu"};
+    String FacEmailsPhysics[] = new String[]{"archana.sharma@somaiya.edu","santoshmani@somaiya.edu","shrikantchawade@somaiya.edu","surenpatwardhan@somaiya.edu"};
+    String FacEmailsChemistry[] = new String[]{"bharati.c@somaiya.edu","jitendrasatam@somaiya.edu","pushpendrarai@somaiya.edu","druman@somaiya.edu"};
 
 
     static  public String getType() {
@@ -97,8 +99,26 @@ public class Register extends AppCompatActivity {
                     setType(typeStudent);
                     for(String f: FacEmails)
                     {
-                        if(f.equals(email)) {
+                        if(f.equals(email))
+                        {
                             setType(typeFaculty);
+
+                            for(String g: FacEmailsChemistry)
+                            {
+                                if(g.equals(email))
+                                {
+                                    subject = "Chemistry";
+                                    break;
+                                }
+                            }
+                            for(String h : FacEmailsPhysics)
+                            {
+                                if(h.equals(email))
+                                {
+                                    subject = "Physics";
+                                    break;
+                                }
+                            }
                             break;
                         }
                     }
@@ -117,7 +137,8 @@ public class Register extends AppCompatActivity {
                                 reference.child(user).child("password").setValue(pass);
                                 reference.child(user).child("email").setValue(email);
                                 reference.child(user).child("type").setValue(getType());
-                                reference.child(user).child("subject").setValue("NA");
+                                reference.child(user).child("subject").setValue(subject);
+                                subject="NA";
                                 Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(Register.this, Login.class));
 
@@ -148,7 +169,8 @@ public class Register extends AppCompatActivity {
                                             reference.child(user).child("password").setValue(pass);
                                             reference.child(user).child("email").setValue(email);
                                             reference.child(user).child("type").setValue(getType());
-                                            reference.child(user).child("subject").setValue("NA");
+                                            reference.child(user).child("subject").setValue(subject);
+                                            subject="NA";
 
                                             Toast.makeText(Register.this, "Registration successful !", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(Register.this, Login.class));
