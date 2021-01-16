@@ -27,7 +27,7 @@ public class physicsFAQ extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("FAQs").child("Physics"), FAQ.class)
                         .build();
 
-        adapter = new FAQAdapter(options);
+        adapter = new FAQAdapter(options, this);
         mrecyclerView.setAdapter(adapter);
 
     }

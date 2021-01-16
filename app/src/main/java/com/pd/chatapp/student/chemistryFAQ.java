@@ -27,8 +27,9 @@ public class chemistryFAQ extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("FAQs").child("Chemistry"), FAQ.class)
                         .build();
 
-        adapter = new FAQAdapter(options);
+        adapter = new FAQAdapter(options, this);
         mrecyclerView.setAdapter(adapter);
+
 
     }
     @Override
