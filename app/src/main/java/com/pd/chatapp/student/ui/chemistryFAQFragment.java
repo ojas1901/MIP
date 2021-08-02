@@ -44,7 +44,7 @@ public class chemistryFAQFragment extends Fragment {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("FAQs").child("Chemistry"), FAQ.class)
                         .build();
 
-        adapter = new FAQAdapter(options);
+        adapter = new FAQAdapter(options, getContext());
         mrecyclerView.setAdapter(adapter);
         return v;
     }
